@@ -5,4 +5,3 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///manifestation.db'
 db = SQLAlchemy(app)
 
-from app import routes, models
