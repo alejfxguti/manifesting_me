@@ -2,6 +2,10 @@ from app import app, db
 from app.models import Goal
 from flask import render_template, request, redirect, url_for
 
+@app.route('/test', methods=['GET'])
+def test():
+    return 'This is a test!'
+
 @app.route('/', methods=['GET'])
 def index():
     daily_goals = Goal.query.filter_by(daily=True, completed=False).all()
