@@ -12,10 +12,10 @@ def index():
     weekly_goals = Goal.query.filter_by(weekly=True, completed=False).all()
     return render_template('index.html', daily_goals=daily_goals, weekly_goals=weekly_goals)
 
-@app.route('/create', methods=['POST'])
+@app.route('/create_goal', methods=['POST'])
 def create():
-    name = request.form['name']
-    description = request.form['description']
+    name = request.form['goal']  # Change to 'goal'
+    description = request.form['duration']  # Change to 'duration'
     is_daily = True if request.form.get('daily') else False
     is_weekly = True if request.form.get('weekly') else False
     goal = Goal(name=name, description=description, daily=is_daily, weekly=is_weekly)

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manifestation App</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+  <body>
+    <h1>Welcome to the Manifestation App!</h1>
+    <form action="/create_goal" method="post">
+      <label for="goal">Enter your goal:</label><br>
+      <input type="text" id="goal" name="goal"><br>
+      <label for="duration">How long will it take to complete?</label><br>
+      <input type="number" id="duration" name="duration" min="1" max="365"><br>
+      <input type="submit" value="Submit">
+    </form>
+    {% for goal in daily_goals %}
+    <h2>Daily Goals:</h2>
+    <p>{{ goal.name }}</p>
+    <p>{{ goal.description }}</p>
+    <a href="{{ url_for('edit', id=goal.id) }}">Edit Goal</a><br>
+    <form action="{{ url_for('delete', id=goal.id) }}" method="post">
+        <input type="submit" value="Delete Goal">
+    </form>
+    {% endfor %}
+    {% for goal in weekly_goals %}
+    <h2>Weekly Goals:</h2>
+    <p>{{ goal.name }}</p>
+    <p>{{ goal.description }}</p>
+    <a href="{{ url_for('edit', id=goal.id) }}">Edit Goal</a><br>
+    <form action="{{ url_for('delete', id=goal.id) }}" method="post">
+        <input type="submit" value="Delete Goal">
+    </form>
+    {% endfor %}
+  </body>
+</html>
+
